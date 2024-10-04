@@ -1,4 +1,4 @@
-package com.kjone.kjoneuserservice.domain.response;
+package com.kjone.kjoneuserservice.domain.request;
 
 import lombok.Getter;
 import lombok.Setter;
