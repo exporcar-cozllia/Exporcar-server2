@@ -188,7 +188,7 @@ public class SignController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
-ㅇ
+
     // 프로필 업데이트 엔드포인드
     @PutMapping("/{id}/profile")
     public ResponseEntity<User> updateProfile(@PathVariable Long id, @RequestBody SignRequest signRequest) {
