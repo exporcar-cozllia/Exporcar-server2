@@ -1,6 +1,7 @@
 package com.kjone.kjoneuserservice.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kjone.kjoneuserservice.domain.role.Authority;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
