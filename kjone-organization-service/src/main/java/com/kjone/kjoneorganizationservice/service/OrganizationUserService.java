@@ -1,5 +1,5 @@
 package com.kjone.kjoneorganizationservice.service;
 
-public interface OrganizationsService {
+public interface OrganizationUserService {
 
 }
