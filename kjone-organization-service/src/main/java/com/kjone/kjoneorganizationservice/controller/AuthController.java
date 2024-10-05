@@ -48,7 +48,7 @@ public class AuthController {
 
             // 로그인 성공 후 /me 엔드포인트로 리다이렉트
             return ResponseEntity.status(HttpStatus.FOUND)  // 302 Redirect
-                    .header(HttpHeaders.LOCATION, "/v1/user/me")
+                    .header(HttpHeaders.LOCATION, "/v1/organization/user/me")
                     .body("로그인 되었습니다.");
         } catch (Exception e) {
             // 인증 실패 시 적절한 에러 메시지 반환
@@ -57,22 +57,6 @@ public class AuthController {
                     .body("이메일 또는 비밀번호를 다시 확인하세요. 등록되지 않은 이메일이거나, 이메일 또는 비밀번호를 잘못 입력하셨습니다.");
         }
     }
-
-    @PostMapping("/signup")
-    public ResponseEntity<String> signUp(@RequestBody SignRequest signRequest) throws Exception {
-        try {
-            boolean result = organizationUserService.Organization_signUp(signRequest);
-            if (result) {
-                return ResponseEntity.status(HttpStatus.CREATED)
-                        .body("회원가입이 완료되었습니다.");
-            } else {
-                return new ResponseEntity<>("회원가입에 실패했습니다.", HttpStatus.BAD_REQUEST);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
 
 
     // 로그아웃 엔드포인트

@@ -43,7 +43,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/v1/organization/sign/signup", "/v1/organization/sign/signin").permitAll()
                         .requestMatchers("/api/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/v1/user/me").authenticated() // 인증된 유저만
+                        .requestMatchers(HttpMethod.GET, "/v1/organization/user/me").authenticated() // 인증된 유저만
                         .requestMatchers(HttpMethod.POST, "/v1/organization/create").permitAll()
                         //                        .requestMatchers("/v1/organization/**").authenticated() // 인증된 유저만
                         .requestMatchers(HttpMethod.GET, "/v1/organization/sign/signout").authenticated() // 인증된 유저만
