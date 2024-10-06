@@ -137,5 +137,73 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         return null;
     }
 
+//    @Override
+//    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+//            throws ServletException, IOException {
+//        String requestURI = request.getRequestURI();
+//        logger.debug("Requested URI: {}", requestURI);
+//
+//        if (isPublicPath(requestURI)) {
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
+//
+//        // 헤더에서 JWT 토큰 추출
+//        String token = resolveTokenFromHeader(request);
+//        if (token == null) {
+//            // 헤더에 토큰이 없으면 쿠키에서 추출
+//            token = cookieProvider.resolveToken(request);
+//        }
+//
+//        if (token != null) {
+//            processToken(token, request);
+//        } else {
+//            logger.debug("No token found");
+//        }
+//        filterChain.doFilter(request, response);
+//    }
+//
+//    private boolean isPublicPath(String requestURI) {
+//        return LOGIN_URI.equals(requestURI) || FAVICON_URI.equals(requestURI) ||
+//                SIGNUP_URI.equals(requestURI) || AUTH_SIGNUP_URI.equals(requestURI);
+//    }
+//
+//    private void processToken(String token, HttpServletRequest request) {
+//        logger.debug("Token received: {}", token);
+//        try {
+//            if (jwtProvider.validateToken(token)) {
+//                String username = jwtProvider.getAccount(token);
+//                logger.debug("Extracted username from token: {}", username);
+//
+//                UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+//                if (userDetails != null) {
+//                    setAuthentication(userDetails, request);
+//                    logger.debug("User authenticated: {}", username);
+//                } else {
+//                    logger.debug("User details not found for username: {}", username);
+//                }
+//            } else {
+//                logger.debug("Invalid token");
+//            }
+//        } catch (Exception e) {
+//            logger.error("Error parsing token: {}", e.getMessage(), e);
+//        }
+//    }
+//
+//    private void setAuthentication(UserDetails userDetails, HttpServletRequest request) {
+//        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+//                userDetails, null, userDetails.getAuthorities());
+//        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+//        SecurityContextHolder.getContext().setAuthentication(authToken);
+//    }
+//
+//    private String resolveTokenFromHeader(HttpServletRequest request) {
+//        String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+//        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+//            return authHeader.substring(7);  // "Bearer " 제거
+//        }
+//        return null;
+//    }
+
 }
 
