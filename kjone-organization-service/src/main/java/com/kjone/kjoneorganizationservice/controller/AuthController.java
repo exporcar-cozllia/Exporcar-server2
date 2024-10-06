@@ -58,6 +58,21 @@ public class AuthController {
         }
     }
 
+    @PostMapping("/signup")
+    public ResponseEntity<String> signUp(@RequestBody SignRequest signRequest) throws Exception {
+        try {
+            boolean result = organizationUserService.Organization_signUp(signRequest);
+            if (result) {
+                return ResponseEntity.status(HttpStatus.CREATED)
+                        .body("회원가입이 완료되었습니다.");
+            } else {
+                return new ResponseEntity<>("회원가입에 실패했습니다.", HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
     // 로그아웃 엔드포인트
     @GetMapping("/signout")
