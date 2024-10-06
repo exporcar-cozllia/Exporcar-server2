@@ -40,16 +40,16 @@ public class OrganizationController {
 //        }
 //        return new ResponseEntity<>("인증되지 않은 사용자입니다.", HttpStatus.UNAUTHORIZED);
 //    }
+
     @PostMapping("/create")
     public ResponseEntity<?> createOrganization(@RequestBody Organization organization, HttpServletRequest request, @RequestParam String sender) throws Exception {
         // 인증된 사용자만 로그아웃을 허용
         if (SecurityContextHolder.getContext().getAuthentication() != null) {
-//            System.out.println("Create User: " + SecurityContextHolder.getContext().getAuthentication().getName());
-
+            System.out.println("Created User: " + SecurityContextHolder.getContext().getAuthentication().getName());
             organizationService.createOrganization(organization, sender);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.status(HttpStatus.CREATED).body("조직이 성공적으로 생성되었습니다.");
         }
-        return new ResponseEntity<>(HttpStatus.FORBIDDEN); // 인증되지 않은 사용자 접근 시 403 반환
+        return new ResponseEntity<>("인증되지 않은 사용자입니다.", HttpStatus.UNAUTHORIZED); // 인증되지 않은 사용자 접근 시 403 반환
     }
 
 
