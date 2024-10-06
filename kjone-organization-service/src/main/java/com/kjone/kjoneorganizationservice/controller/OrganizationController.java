@@ -42,8 +42,8 @@ public class OrganizationController {
 //    }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createOrganization(@RequestBody Organization organization, HttpServletRequest request, @RequestParam String sender) throws Exception {
-        // 인증된 사용자만 로그아웃을 허용
+    public ResponseEntity<?> createOrganization(@RequestBody Organization organization, @RequestParam String sender) throws Exception {
+        // 인증된 사용자만 조직 생성 허용
         if (SecurityContextHolder.getContext().getAuthentication() != null) {
             System.out.println("Created User: " + SecurityContextHolder.getContext().getAuthentication().getName());
             organizationService.createOrganization(organization, sender);
