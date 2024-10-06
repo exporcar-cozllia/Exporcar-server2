@@ -41,6 +41,15 @@ public class JwtProvider {
         secretKey = Keys.hmacShaKeyFor(salt.getBytes(StandardCharsets.UTF_8));
     }
 
+    // JWT 토큰에서 사용자 이메일을 추출하는 메서드
+    public String getEmailFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.getSubject(); // 이메일을 subject에 저장했다고 가정
+    }
+
     // 토큰 생성
     public String createToken(String account, Set<Authority> roles) {
         Claims claims = Jwts.claims().setSubject(account);
