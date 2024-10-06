@@ -44,10 +44,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v1/organization/user/me").authenticated() // 인증된 유저만
-                        .requestMatchers(HttpMethod.POST, "/v1/organization/create").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/v1/organization/create").authenticated() //인증된 유저만
                         //                        .requestMatchers("/v1/organization/**").authenticated() // 인증된 유저만
                         .requestMatchers(HttpMethod.GET, "/v1/organization/sign/signout").authenticated() // 인증된 유저만
-                        .requestMatchers(HttpMethod.DELETE, "/v1/organization/sign/delete").authenticated() // 인증된 유저만
+                        .requestMatchers(HttpMethod.DELETE, "/v1/organization/sign/delete").permitAll() // 인증된 유저만
                         .requestMatchers("/favicon.ico").permitAll() // Favicon에 대한 접근 허용
                         .anyRequest().denyAll());
 
