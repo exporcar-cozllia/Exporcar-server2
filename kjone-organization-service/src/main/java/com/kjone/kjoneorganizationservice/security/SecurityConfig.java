@@ -41,7 +41,6 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(HttpMethod.POST, "/v1/organization/sign/signup", "/v1/organization/sign/signin").permitAll()
-                        .requestMatchers("/api/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/v1/organization/user/me").authenticated() // 인증된 유저만
                         .requestMatchers(HttpMethod.POST, "/v1/organization/create").hasRole("OWNER") //권한이 OWNER인 유저만
