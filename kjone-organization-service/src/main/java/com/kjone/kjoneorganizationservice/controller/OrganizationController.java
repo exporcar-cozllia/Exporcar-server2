@@ -54,8 +54,8 @@ public class OrganizationController {
 
 
     // 조직 이름으로 조직 조회 엔드포인트
-    @GetMapping("/{name}")
-    public ResponseEntity<Organization> getOrganization(@PathVariable String name, @RequestParam String sender) {
+    @GetMapping("/get_organization")
+    public ResponseEntity<Organization> getOrganization(@RequestParam String name, @RequestParam String sender) {
         try {
             Organization organization = organizationService.getOrganizationName(name, sender);
             return ResponseEntity.ok(organization);
@@ -63,4 +63,14 @@ public class OrganizationController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
+    @PostMapping("/update/organization")
+    public ResponseEntity<?> updateOrganization(@RequestBody Organization organization, @RequestParam String sender) throws Exception {
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+
+        }
+        return new ResponseEntity<>("인증되지 않은 사용자입니다.", HttpStatus.UNAUTHORIZED); // 인증되지 않은 사용자 접근 시 403 반환
+    }
+
+
 }
