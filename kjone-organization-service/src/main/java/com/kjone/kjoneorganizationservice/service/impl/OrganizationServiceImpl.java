@@ -92,7 +92,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
     }
 
-    // 조직 이름으로 조직 조회하기
+    // 조직 이름으로 조직 정보 가져오기
     @Override
     public Organization getOrganizationName(String name, String sender) throws Exception {
         // 조직 사용자 확인
@@ -100,18 +100,26 @@ public class OrganizationServiceImpl implements OrganizationService {
                 .orElseThrow(() -> new RuntimeException("조직자를 찾을 수 없습니다."));
 
         // 사용자 권한 확인
-        if (!organizationUser.isOwner()) {
-            throw new GlobalException(HttpStatus.FORBIDDEN, "조직자의 권한이 없습니다.");
-        }
+        verifyUserPermissions(organizationUser);
 
-        return (Organization) organizationRepository.findByName(name).stream()
-                .map(organization -> new Organization(
-                        organization.getId(),
-                        organization.getName(),
-                        organization.getOwner_id(),
-                        organization.getCreateTime(),
-                        organization.getUpdateTime()
-                ))
-                .collect(Collectors.toList());
+        // 조직 이름으로 조직 검색
+        return organizationRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("조직을 찾을 수 없습니다."));
+
+//        return (Organization) organizationRepository.findByName(name).stream()
+//                .map(organization -> new Organization(
+//                        organization.getId(),
+//                        organization.getName(),
+//                        organization.getOwner_id(),
+//                        organization.getCreateTime(),
+//                        organization.getUpdateTime()
+//                ))
+//                .collect(Collectors.toList());
     }
+
+
+
+
+
+
 }
