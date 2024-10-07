@@ -11,4 +11,5 @@ public interface OrganizationService {
 //    public void createOrganization(Organization organization, Authentication authentication) throws Exception;
 
     public Organization getOrganizationName(String name, String sender) throws Exception;
+
 }
