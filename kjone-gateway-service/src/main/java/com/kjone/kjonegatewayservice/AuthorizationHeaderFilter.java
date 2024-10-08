@@ -23,3 +23,14 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         // 필터 구성 속성
     }
 }
+
+
+
+
+
+
+
+
+
+
+
