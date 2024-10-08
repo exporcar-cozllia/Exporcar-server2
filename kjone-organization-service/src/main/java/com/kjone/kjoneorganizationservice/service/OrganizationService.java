@@ -12,4 +12,6 @@ public interface OrganizationService {
 
     public Organization getOrganizationName(String name, String sender) throws Exception;
 
+    
+
 }
