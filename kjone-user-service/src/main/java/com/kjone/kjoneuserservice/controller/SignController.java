@@ -178,15 +178,20 @@ public class SignController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    // 프로필 생성 엔드포인트
-    @PostMapping("/{id}/profile")
-    public ResponseEntity<User> createProfile(@PathVariable Long id, @RequestBody SignRequest signRequest) {
+    // 프로필 생성 엔드포인트 수정중
+    @PostMapping("/create/profile")
+    public ResponseEntity<User> createProfile(@RequestParam String username, @RequestBody SignRequest signRequest) {
         try {
-            User user = userService.createProfile(id, signRequest);
+            User user = userService.createProfile(username, signRequest);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/get/profile")
+    public ResponseEntity<User> getProfile(@RequestParam String username) {
+
     }
 
     // 프로필 업데이트 엔드포인드
