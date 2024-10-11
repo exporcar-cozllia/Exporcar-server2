@@ -111,6 +111,7 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    // 프로필 생성
     @Override
     @Transactional
     public User createProfile(Long userId, SignRequest signRequest) throws Exception {
@@ -125,6 +126,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    //프로필 업데이트
     @Override
     @Transactional
     public User updateProfile(Long userId, SignRequest signRequest) throws Exception {
