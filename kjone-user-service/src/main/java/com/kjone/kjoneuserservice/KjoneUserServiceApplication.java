@@ -10,4 +10,4 @@ public class KjoneUserServiceApplication {
 		SpringApplication.run(KjoneUserServiceApplication.class, args);
 	}
 
-}test
+}
