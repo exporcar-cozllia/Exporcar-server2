@@ -51,7 +51,7 @@ public class OrganizationController {
     // 조직 이름으로 조직 조회 엔드포인트
     @GetMapping("/get/organization")
     public ResponseEntity<Organization> getOrganization(@RequestParam String name, @RequestParam String sender) throws Exception {
-        // 인증된 사용자만 로그아웃을 허용
+        // 인증된 사용자만 정보 가져오기
         if (SecurityContextHolder.getContext().getAuthentication() != null) {
             System.out.println("get User: " + SecurityContextHolder.getContext().getAuthentication().getName());
 
